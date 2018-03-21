@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Mirror</title>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+        }
+
+        video {
+            background-color: black;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<video id="mirror" autoplay="autoplay"></video>
+
+<script>
+    const video = document.querySelector("#mirror")
+
+    navigator.getUserMedia = navigator.getUserMedia ||
+        navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia || navigator.oGetUserMedia
+
+    if (navigator.getUserMedia) {
+        navigator.getUserMedia({video: true}, (stream) => {
+            video.src = window.URL.createObjectURL(stream)
+        }, (err) => {
+            console.error(err)
+            video.innerHTML = err
+        })
+    }
+</script>
+
+</body>
+</html>
