@@ -38,6 +38,14 @@
             console.error(err)
             video.innerHTML = err
         })
+
+        video.onclick = () => {
+            if (video.paused) {
+                video.play()
+            } else {
+                video.pause()
+            }
+        }
     }
 </script>
 
